@@ -1,0 +1,21 @@
+<div layout="column" ng-cloak>
+  <md-content flex layout-padding>
+
+      <h2 style="margin-bottom: 0">Scheduled Events.</h2>
+      <md-button class="md-raised md-primary" ng-click="goTo('/events/new')">Create</md-button>
+
+    <md-content flex layout-padding ng-show="events.length">
+      <ul class="events-list">
+        <li class="event-item"></li>
+      </ul>
+    </md-content>
+    <md-content flex layout-padding ng-show="!events.length">
+      <div class="empty">
+        No events. Be the first.
+      </div>
+    </md-content>
+
+
+
+  </md-content>
+</div>

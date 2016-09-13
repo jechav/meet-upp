@@ -1,0 +1,45 @@
+
+<div layout="column" layout-align="center center" layout-fill>
+    <img src="/assets/img/logo.png" class="padding-bottom-m" alt="ALAS logo" width="150px">
+  <div class="Login-box md-whiteframe-z1" layout="column">
+    <form ng-submit="ctrl.login()">
+      <md-toolbar>
+        <h2 class="md-toolbar-tools"><span>Iniciar sesion</span></h2>
+      </md-toolbar>
+      <md-content class="md-padding" layout="column">
+        <md-input-container>
+          <label>Usuario</label>
+          <input type="text" ng-model="ctrl.user.username">
+        </md-input-container>
+        <md-input-container>
+          <label>Contraseña</label>
+          <input type="password" ng-model="ctrl.user.password">
+        </md-input-container>
+
+        <div layout="row" layout-align="center" ng-if="ctrl.busy">
+          <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+        </div>
+
+        <ul class="no-uldots" ng-if="ctrl.errors">
+          <li ng-repeat="error in ctrl.errors" class="Login-has-error">
+            <label>
+              <ng-md-icon icon="error" size="20" style="fill: red"></ng-md-icon> 
+              {{ error }}
+            </label>
+          </li>
+        </ul>
+
+        <div layout="row" layout-align="center center" style="padding-top:20px;">
+          <md-button class="md-raised md-primary" type="submit" 
+            ng-disabled="ctrl.busy">Entrar</md-button>
+          <div flex></div>
+          <md-button href="" md-no-link>Recordar contraseña</md-button>
+        </div>
+      </md-content>
+    </form>
+  </div>
+
+  <footer>
+    <p>Powered by <a href="http://www.polymer-project.org/" target="_blank">The3ballsoft</a></p>
+  </footer>
+</div>

@@ -1,0 +1,52 @@
+<div layout="column" ng-cloak>
+  <md-content flex layout-padding>
+
+    <h2>Create Event</h2>
+    <small class="empty">Pleas complete the next Fields</small>
+
+    <md-content flex layout-padding>
+      <form name="userForm">
+        <!--Name of the event-->
+        <!--Type of the event (birthday party, conference talk, wedding, etc.)-->
+        <div layout-gt-xs="row">
+          <md-input-container class="md-block" flex-gt-xs>
+            <label>Name of Event</label>
+            <input ng-model="event.name">
+          </md-input-container>
+
+          <md-input-container>
+            <label>Type</label>
+            <input ng-model="event.type">
+          </md-input-container>
+        </div>
+        <!--Event host (could be an individual’s name or an organization)-->
+        <md-input-container class="md-block">
+          <label>Event Host</label>
+          <input ng-model="event.type">
+        </md-input-container>
+        <!--Event end date and time-->
+        <!--Event start date and time-->
+        <div layout-gt-xs="row">
+          <md-input-container class="md-block">
+            <label>Start Date</label>
+            <input ng-model="event.type">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <label>End Date</label>
+            <input ng-model="event.type">
+          </md-input-container>
+        </div>
+        <!--Guest list-->
+        <!--Location-->
+
+        <!--Optional message to the guests with additional information about the event -->
+
+      </form>
+
+    </md-content>
+
+
+
+  </md-content>
+</div>

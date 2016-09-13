@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<!-- 
+  © 2016 | Desarrollado por The3Ballsoft 
+-->
+<html  >
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="viewport" content="width=device-width">
+    <title>Meet Up</title>
+    <link rel="stylesheet" href="/css/main.min.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
+    <base href="/">
+  </head>
+  <body >
+    <div ng-app="app" class="app">
+      <!--head-->
+      <section class="head">
+        <md-toolbar class="md-warn">
+          <div class="md-toolbar-tools">
+            <h2 class="md-flex">Meet Upp </h2>
+          </div>
+        </md-toolbar>
+      </section>
+
+      <!--content-->
+      <section class="content" ng-view></section>
+
+      <!--footer-->
+      <section class="foot">
+        <div>Jose Echavez. Senior Web Developer Nanodegree </div>
+      </section>
+    </div>
+
+    <!--scripts-->
+    <script src="js/vendor.min.js"></script>
+    <script src="js/templates.min.js"></script>
+    <script src="js/bundle.min.js"></script>
+    <script src="//cdn.jsdelivr.net/angular-material-icons/0.4.0/angular-material-icons.min.js"></script> 
+  </body>
+</html>
