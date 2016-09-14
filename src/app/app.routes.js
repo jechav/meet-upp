@@ -11,6 +11,14 @@ angular.module('app')
     $routeProvider.otherwise("/events");
 
     $routeProvider 
+    .when('/login', {
+      templateUrl: 'app/auth/login.html',
+      controller: 'LoginCtrl as ctrl'
+    })
+    .when('/register', {
+      templateUrl: 'app/auth/register.html',
+      controller: 'RegisterCtrl as ctrl'
+    })
     .when('/events', {
       templateUrl: 'app/events/events.html',
       controller: 'EventCtrl as ctrl'

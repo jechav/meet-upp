@@ -1,0 +1,44 @@
+<div layout="column" ng-cloak>
+  <md-content flex layout-padding>
+
+    <h2 style="margin-bottom: 0">Complete this fields or via Google or Facebook</h2>
+
+    <md-content flex layout-padding>
+      <form name="registeruser">
+        <md-input-container class="md-block" flex-gt-xs>
+          <label>Name</label>
+          <input ng-model="ctrl.user.name" name="name">
+        </md-input-container>
+
+        <md-input-container class="md-block" flex-gt-xs>
+          <label>Email</label>
+          <input ng-model="ctrl.user.email" type="email" name="email">
+        </md-input-container>
+
+        <md-input-container class="md-block" flex-gt-xs>
+          <label>Password</label>
+          <input ng-model="ctrl.user.password" type="password" name="password">
+        </md-input-container>
+
+        <md-button class="md-raised md-primary md-hue-2" aria-label="registar" 
+          ng-click="ctrl.register()">
+          Registrar
+        </md-button>
+
+        <md-button class="md-fab md-primary" aria-label="register facebook"
+          ng-click="ctrl.Fregister()">
+          <md-icon md-svg-src="https://upload.wikimedia.org/wikipedia/commons/c/c2/F_icon.svg"></md-icon> 
+        </md-button>
+
+        <md-button class="md-fab md-warn" aria-label="register google"
+          ng-click="ctrl.GGregister()" >
+          <md-icon md-svg-src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Google_plus.svg"></md-icon> 
+        </md-button>
+
+
+
+      </form>
+    </md-content>
+
+  </md-content>
+</div>

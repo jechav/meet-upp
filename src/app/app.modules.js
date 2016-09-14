@@ -5,8 +5,10 @@ angular.module('app',
                  'templates',
                  'ngMaterial',
                  'ngMdIcons',
+                 'app.auth',
                  'app.event',
+                 'firebase'
                ]);
 
-//angular.module('app.auth', [])
+angular.module('app.auth', [])
 angular.module('app.event', [])

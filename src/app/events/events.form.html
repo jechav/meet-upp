@@ -11,30 +11,38 @@
         <div layout-gt-xs="row">
           <md-input-container class="md-block" flex-gt-xs>
             <label>Name of Event</label>
-            <input ng-model="event.name">
+            <input ng-model="event.name" name="name">
           </md-input-container>
 
           <md-input-container>
             <label>Type</label>
-            <input ng-model="event.type">
+            <input ng-model="event.type" list="eventype" name="type">
+            <datalist id="eventype">
+              <option value="birthday party"></option>
+              <option value="conference talk"></option>
+              <option value="wedding"></option>
+              <option value="camping day"></option>
+              <option value="soccer play"></option>
+            </datalist>
+
           </md-input-container>
         </div>
         <!--Event host (could be an individual’s name or an organization)-->
-        <md-input-container class="md-block">
+        <md-input-container>
           <label>Event Host</label>
-          <input ng-model="event.type">
+          <input ng-model="event.host" name="host">
         </md-input-container>
         <!--Event end date and time-->
         <!--Event start date and time-->
         <div layout-gt-xs="row">
           <md-input-container class="md-block">
             <label>Start Date</label>
-            <input ng-model="event.type">
+            <input ng-model="event.start_date" name="start_date">
           </md-input-container>
 
           <md-input-container class="md-block">
             <label>End Date</label>
-            <input ng-model="event.type">
+            <input ng-model="event.end_date" name="end_date">
           </md-input-container>
         </div>
         <!--Guest list-->

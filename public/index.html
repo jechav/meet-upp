@@ -13,7 +13,7 @@
     <title>Meet Up</title>
     <link rel="stylesheet" href="/css/main.min.css" type="text/css" media="all" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
-    <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <base href="/">
   </head>
   <body >
@@ -41,5 +41,17 @@
     <script src="js/templates.min.js"></script>
     <script src="js/bundle.min.js"></script>
     <script src="//cdn.jsdelivr.net/angular-material-icons/0.4.0/angular-material-icons.min.js"></script> 
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyBdhDubXhWxcaM8NlBlywGG8nPTVDSR88g",
+        authDomain: "meet-upp.firebaseapp.com",
+        databaseURL: "https://meet-upp.firebaseio.com",
+        storageBucket: "",
+        messagingSenderId: "319580600328"
+      };
+      firebase.initializeApp(config);
+  </script>
   </body>
 </html>
