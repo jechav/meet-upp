@@ -1,45 +1,70 @@
+<div layout="column" ng-cloak>
+  <md-content flex layout-padding class="center-form">
 
-<div layout="column" layout-align="center center" layout-fill>
-    <img src="/assets/img/logo.png" class="padding-bottom-m" alt="ALAS logo" width="150px">
-  <div class="Login-box md-whiteframe-z1" layout="column">
-    <form ng-submit="ctrl.login()">
-      <md-toolbar>
-        <h2 class="md-toolbar-tools"><span>Iniciar sesion</span></h2>
-      </md-toolbar>
-      <md-content class="md-padding" layout="column">
-        <md-input-container>
-          <label>Usuario</label>
-          <input type="text" ng-model="ctrl.user.username">
-        </md-input-container>
-        <md-input-container>
-          <label>Contraseña</label>
-          <input type="password" ng-model="ctrl.user.password">
-        </md-input-container>
+    <h2 style="margin-bottom: 0">Use your credentials to login</h2>
 
-        <div layout="row" layout-align="center" ng-if="ctrl.busy">
-          <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    <md-content flex layout-padding >
+      <form name="registeruser" style="text-align: left">
+        <div ng-messages="ctrl.errMsg" role="alert" class="myerror" style="text-align: right" >
+          <div ng-repeat="(key, value) in ctrl.errMsg">
+            <div ng-message-exp="key" >
+              {{ value }}
+            </div>
+          </div>
+          <br>
         </div>
 
-        <ul class="no-uldots" ng-if="ctrl.errors">
-          <li ng-repeat="error in ctrl.errors" class="Login-has-error">
-            <label>
-              <ng-md-icon icon="error" size="20" style="fill: red"></ng-md-icon> 
-              {{ error }}
-            </label>
-          </li>
-        </ul>
+        <md-input-container class="md-block" flex-gt-xs>
+          <label>Email</label>
+          <input ng-model="ctrl.user.email" type="email" name="usremail" 
+          ng-pattern="/^.+@.+\..+$/" required>
+          <div ng-messages="registeruser.usremail.$error" role="alert" >
+            <div ng-message="required">Please enter a value for this field.</div>
+            <div ng-message-exp="['email', 'pattern']">This field must be a valid email address.</div>
+          </div>
+        </md-input-container>
 
-        <div layout="row" layout-align="center center" style="padding-top:20px;">
-          <md-button class="md-raised md-primary" type="submit" 
-            ng-disabled="ctrl.busy">Entrar</md-button>
-          <div flex></div>
-          <md-button href="" md-no-link>Recordar contraseña</md-button>
+        <md-input-container class="md-block" flex-gt-xs>
+          <label>Password</label>
+          <input ng-model="ctrl.user.password" type="password" name="password"
+          minlength="6" required>
+          <div ng-messages="registeruser.password.$error" role="alert" >
+            <div ng-message="required">Please enter a value for this field.</div>
+            <div ng-message-exp="['minlength']">
+              This fild length most be more than six characters
+            </div>
+          </div>
+        </md-input-container>
+
+        <div class="buttons" style="text-align: center;">
+          <md-button class="md-raised md-primary md-hue-2" aria-label="registar" 
+            type="submit"
+            ng-click="ctrl.login()" ng-disabled="!registeruser.$valid || ctrl.busy">
+            Sign in
+          </md-button>
+
+          <br><br>
+
+          <span>Have't you an account yet? <span ng-click="goTo('/register')" class="link">Sign up</span> </span>
+
+          <br><br>
+
+          <md-button class="md-fab md-warn" aria-label="register google"
+            ng-click="ctrl.GGregister()" >
+            GG
+          </md-button>
+
+          <md-button class="md-fab md-primary" aria-label="register facebook"
+            ng-click="ctrl.Fregister()">
+            FB
+          </md-button>
+
         </div>
-      </md-content>
-    </form>
-  </div>
 
-  <footer>
-    <p>Powered by <a href="http://www.polymer-project.org/" target="_blank">The3ballsoft</a></p>
-  </footer>
+
+
+      </form>
+    </md-content>
+
+  </md-content>
 </div>

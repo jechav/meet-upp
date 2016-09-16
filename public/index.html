@@ -22,7 +22,20 @@
       <section class="head">
         <md-toolbar class="md-warn">
           <div class="md-toolbar-tools">
-            <h2 class="md-flex">Meet Upp </h2>
+            <h2 flex>Meet Upp </h2>
+            <div class="userInfo" flex="nogrow" layout="row" ng-if="loginUser">
+              <img flex ng-src="{{ loginUser.photoURL }}" alt="" class="avatarUser">
+              <div flex class="displayname">
+                <span>{{ loginUser.displayName }}</span><br>
+                <!--<span ng-click="logout()" class="link" style="color: white;">Profile</span>-->
+                <span ng-click="logout()" class="link" style="color: white;">Logout</span>
+              </div>
+            </div>
+            <div class="userInfo" flex="nogrow" layout="row" ng-if="!loginUser">
+              <div flex class="displayname">
+                <span ng-click="goTo('/login')" class="link" style="color: white;">Login</span>
+              </div>
+            </div>
           </div>
         </md-toolbar>
       </section>

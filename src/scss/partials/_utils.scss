@@ -24,3 +24,24 @@ html body{
     font-size: 14px;
   }
 }
+.userInfo{
+  font-size: 16px;
+  .avatarUser {
+    border-radius: 50%;
+    max-width: 35px;
+    width: 35px;
+    height: 35px;
+    object-fit: cover;
+  }
+  .displayname{
+    padding-left: 10px;
+  }
+}
+.link {
+  font-size: 14px;
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 500;
+  color: $blue;
+}
+

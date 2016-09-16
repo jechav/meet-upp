@@ -5,6 +5,7 @@
   "./vendor/angular-messages/angular-messages.min.js",
   "./vendor/angular-route/angular-route.min.js",
   "./vendor/angular-material/angular-material.min.js",
+  "./vendor/angular-messages/angular-messages.min.js",
   "./vendor/firebase/firebase.js",
   "./vendor/angularfire/dist/angularfire.min.js"
 ]

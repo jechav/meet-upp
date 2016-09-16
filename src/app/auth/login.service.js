@@ -1,55 +1,80 @@
+class LoginService {
 
+  constructor($firebaseAuth){
+    this.firebaseAuthObject = $firebaseAuth();
+    this.GGprovider = new firebase.auth.GoogleAuthProvider();
+    this.GGprovider.addScope('https://www.googleapis.com/auth/plus.login');
+    this.Fprovider = new firebase.auth.FacebookAuthProvider();
+  }
 
-//class LoginService {
+  login(data) {
+    return this.firebaseAuthObject.$signInWithEmailAndPassword(data.email, data.password)
+  };
 
-  //constructor($http, CONFIG, Session){
-    //this.$http = $http;
-    //this.API_URL = CONFIG.API_URL;
-    //this.TOKEN_URL = CONFIG.API_URL+'auth/token/';
-    //this.LOGOUT_URL = CONFIG.API_URL+'auth/exit/';
-    //this.Session = Session;
-  //}
+  logout(){
+    this.firebaseAuthObject.$signOut();
+  }
 
-  /*
-   * api token request
-   */
-  //requestToken(data, callback, error) {
-      //return this.$http.post(this.TOKEN_URL, data)
-                 //.then(callback, error);
-  //};
+  getLogedUser(){
+    return firebaseAuthObject.$getAuth();
+  }
 
-  /*
-   * login, create a session
-   */
-  //login(token, callback) {
-    //let config = {
-      //method : 'GET',
-      //url    : `${this.API_URL}users/me/`,
-      //headers: {
-        //'Content-Type' : 'application/x-www-form-urlencoded; charset=utf-8',
-        //'Authorization': `Token ${token}` 
-      //}
-    //};
+  registerNormal(data, cb, cberror){
+    this.firebaseAuthObject.$createUserWithEmailAndPassword(data.email, data.password)
+      .catch(cberror)  /* errror */
+      .then((s) => {  /* success */
+        if(!s) return;
+        data.photoURL = 'http://i65.tinypic.com/3wy9h.jpg'
+        s.updateProfile({
+          displayName: data.name,
+          photoURL: data.photoURL
+        }).then(function(res){ console.log(res) })
+        this.saveInfoUser(data, s.uid, 'password')
+        if(cb) cb(s);
+      });
+  };
 
-    //return this.$http(config)
-               //.then(response => {
-                  //this.Session.create(token, response.data);
-                  //callback(response) 
-               //}, this.handleError);
-  //}
+  googleAccess(cb, cberror){
+    this.firebaseAuthObject.$signInWithPopup(this.GGprovider)
+    .then((result) => {
+      /* success */
+      let data = {};
+      data.name = result.user.email;
+      data.email = result.user.providerData[0].displayName;
+      data.photoURL = result.user.providerData[0].photoURL;
+      let type = result.user.providerData[0].providerId;
 
-  //logout(callback) {
-    //return this.$http.delete(this.LOGOUT_URL, null)
-               //.then(callback); 
-  //}
+      this.saveInfoUser(data, result.user.uid, type);
+      cb(result.user);
+    })
+    .catch(cberror); /* error */
+  };
 
-  /*
-   * print error
-   */
-  //handleError(res) {
-    //console.warn(res);
-  //}
+  facebookAccess(cb, cberror){
+    this.firebaseAuthObject.$signInWithPopup(this.Fprovider)
+      .then((result) => {
+        console.log(result);
+        /* success */
+        let data = {};
+        data.name = result.user.email;
+        data.email = result.user.providerData[0].displayName;
+        data.photoURL = result.user.providerData[0].photoURL;
+        let type = result.user.providerData[0].providerId;
 
-//}
+        this.saveInfoUser(data, result.user.uid, type);
+        cb(result.user);
+      })
+      .catch(cberror); /* error */
+  }
 
-//angular.module('app.auth').service('LoginService', LoginService); 
+  saveInfoUser(data, uid, type){
+    firebase.database().ref('users/'+uid).set({
+      name: data.name,
+      email: data.email,
+      photoURL: data.photoURL,
+      type: type
+    }) 
+  };
+}
+
+angular.module('app.auth').service('LoginService', LoginService); 

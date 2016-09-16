@@ -1,39 +1,71 @@
 <div layout="column" ng-cloak>
-  <md-content flex layout-padding>
+  <md-content flex layout-padding class="center-form">
 
     <h2 style="margin-bottom: 0">Complete this fields or via Google or Facebook</h2>
 
-    <md-content flex layout-padding>
-      <form name="registeruser">
+    <md-content flex layout-padding >
+      <form name="registeruser" style="text-align: left">
+        <div ng-messages="ctrl.errMsg" role="alert" class="myerror" style="text-align: right" >
+          <div ng-repeat="(key, value) in ctrl.errMsg">
+            <div ng-message-exp="key" >
+              {{ value }}
+            </div>
+          </div>
+          <br>
+        </div>
         <md-input-container class="md-block" flex-gt-xs>
           <label>Name</label>
-          <input ng-model="ctrl.user.name" name="name">
+          <input ng-model="ctrl.user.name" name="name" required>
+          <div ng-messages="registeruser.name.$error" role="alert" >
+            <div ng-message="required">Please enter a value for this field.</div>
+          </div>
         </md-input-container>
 
         <md-input-container class="md-block" flex-gt-xs>
           <label>Email</label>
-          <input ng-model="ctrl.user.email" type="email" name="email">
+          <input ng-model="ctrl.user.email" type="email" name="usremail" 
+          ng-pattern="/^.+@.+\..+$/" required>
+          <div ng-messages="registeruser.usremail.$error" role="alert" >
+            <div ng-message="required">Please enter a value for this field.</div>
+            <div ng-message-exp="['email', 'pattern']">This field must be a valid email address.</div>
+          </div>
         </md-input-container>
 
         <md-input-container class="md-block" flex-gt-xs>
           <label>Password</label>
-          <input ng-model="ctrl.user.password" type="password" name="password">
+          <input ng-model="ctrl.user.password" type="password" name="password"
+          minlength="6" required>
+          <div ng-messages="registeruser.password.$error" role="alert" >
+            <div ng-message="required">Please enter a value for this field.</div>
+            <div ng-message-exp="['minlength']">
+              This fild length most be more than six characters
+            </div>
+          </div>
         </md-input-container>
 
-        <md-button class="md-raised md-primary md-hue-2" aria-label="registar" 
-          ng-click="ctrl.register()">
-          Registrar
-        </md-button>
+        <div class="buttons" style="text-align: center;">
+          <md-button class="md-raised md-primary md-hue-2" aria-label="registar" 
+            type="submit"
+            ng-click="ctrl.register()" ng-disabled="!registeruser.$valid || ctrl.busy">
+            Sign up
+          </md-button>
+          <br><br>
 
-        <md-button class="md-fab md-primary" aria-label="register facebook"
-          ng-click="ctrl.Fregister()">
-          <md-icon md-svg-src="https://upload.wikimedia.org/wikipedia/commons/c/c2/F_icon.svg"></md-icon> 
-        </md-button>
+          <span>Have you an account? <span ng-click="goTo('/login')" class="link">Login</span> </span>
 
-        <md-button class="md-fab md-warn" aria-label="register google"
-          ng-click="ctrl.GGregister()" >
-          <md-icon md-svg-src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Google_plus.svg"></md-icon> 
-        </md-button>
+          <br><br>
+
+          <md-button class="md-fab md-warn" aria-label="register google"
+            ng-click="ctrl.GGregister()" >
+            GG
+          </md-button>
+
+          <md-button class="md-fab md-primary" aria-label="register facebook"
+            ng-click="ctrl.Fregister()">
+            FB
+          </md-button>
+
+        </div>
 
 
 

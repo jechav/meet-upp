@@ -2,7 +2,11 @@
   <md-content flex layout-padding>
 
       <h2 style="margin-bottom: 0">Scheduled Events.</h2>
-      <md-button class="md-raised md-primary" ng-click="goTo('/events/new')">Create</md-button>
+      <md-button class="md-raised md-primary" 
+        ng-click="goTo('/events/new')" ng-disabled="!loginUser">
+        Create
+      </md-button>
+      <span class="link" ng-click="goTo('/register')" ng-show="!loginUser">Sign up or login to add events</span>
 
     <md-content flex layout-padding ng-show="events.length">
       <ul class="events-list">

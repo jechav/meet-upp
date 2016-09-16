@@ -8,4 +8,6 @@
 @import "./../../vendor/angular-material/angular-material.scss";
 
 //app
+@import "./../../src/app/auth/login";
+@import "./../../src/app/auth/register";
 @import "./../app/events/events";

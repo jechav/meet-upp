@@ -1,0 +1,17 @@
+.center-form {
+  width: 380px;
+  text-align: center;
+  margin: 0 auto;
+}
+.myerror{
+  color: rgb(221,44,0);
+  font-size: 12px;
+  line-height: 14px;
+  overflow: hidden;
+  transition: all .3s cubic-bezier(.55,0,.55,.2);
+  opacity: 1;
+  margin-top: 0;
+  padding-top: 5px;
+
+}
+

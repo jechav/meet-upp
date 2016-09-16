@@ -5,6 +5,7 @@ angular.module('app',
                  'templates',
                  'ngMaterial',
                  'ngMdIcons',
+                 'ngMessages',
                  'app.auth',
                  'app.event',
                  'firebase'

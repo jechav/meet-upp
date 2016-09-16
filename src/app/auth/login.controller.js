@@ -1,40 +1,55 @@
+class LoginCtrl {
 
-//class LoginCtrl {
+  constructor(LoginService, $location) {
+    this.user = {};
+    this.LoginService = LoginService;
+    this.location = $location;
+    this.busy = false;
+    this.errMsg;
+  }
 
-  //constructor(LoginService, $state, Session) {
-    //this.LoginService = LoginService;
-    //this.$state = $state;
-    //this.user = {};
-    //this.busy = false;
-    //this.errors = [];
-    //if(Session.isAuthenticated()) {
-      //$state.go('arancel');
-    //}
-  //}
+  login(){
+    this.LoginService.login(this.user)
+    .then(
+      (response)=>{
+        this.busy = false;
+        console.log('afterlogin:', response);
+        this.location.path('/events');
+      })
+    .catch(this.onError.bind(this))
+    ;
+  }
 
-  //[> fired when the user click to "Entrar" <]
-  //login() {
-    //const {LoginService, $state } = this;
-    //this.busy = true;
-    //this.errors = [];
+  GGregister(){
+    this.busy = true;
+    this.errMsg = undefined;
 
-    //LoginService.requestToken(this.user, (response) => {
-      //LoginService.login(response.data.token, (response) => {
-        //[> get user data, create a session and redirect to home<]
-        //console.log(response);
-        //this.busy = false;
-        //$state.go('arancel');
-      //});
-    //}, this.onError.bind(this));
-  //}
+    this.LoginService.googleAccess(
+      (response) => {
+        /* success */
+        this.busy = false;
+        console.info(response);
+        this.location.path('/events');
+      }, this.onError.bind(this));
+  }
+  Fregister(){
+    this.busy = true;
+    this.errMsg = undefined;
 
-  //[> handle errors on login <]
-  //onError(response) {
-    //console.log(response); 
-    //this.busy = false;
-    //if(response.data) 
-      //this.errors = response.data.non_field_errors;
-  //}
-//}
+    this.LoginService.facebookAccess(
+      (response) => {
+        /* success */
+        this.busy = false;
+        console.info(response);
+        this.location.path('/events');
+      }, this.onError.bind(this));
+  }
+  onError(err){
+    console.warn(err);
+    this.busy = false;
+    this.errMsg = {};
+    this.errMsg[err.code] = err.message;
+  }
+}
 
-//angular.module('app.auth').controller('LoginCtrl', LoginCtrl); 
+angular.module('app.auth').controller('LoginCtrl', LoginCtrl); 
